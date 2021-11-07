@@ -43,7 +43,7 @@ const run = async () => {
 
         app.get('/appointments', verifyToken, async (req, res) => {
             const email = req.query.email;
-            const date = new Date(req.query.date).toLocaleDateString();
+            const date = req.query.date;
             const query = { email: email, date: date };
             const cursor = await appointmentsCollection.find(query).toArray();
             res.json(cursor);
